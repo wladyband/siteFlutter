@@ -9,37 +9,22 @@ class LoginController extends GetxController {
   final LoginRepository repository;
   LoginController(this.repository);
 
-
   final emailEC = TextEditingController();
+  final nomeEC = TextEditingController();
+  final apelidoEC = TextEditingController();
   final passwordEC = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  final isLoading = false.obs;
-
-  //var selectedValue = ''.obs;
-  var dropdownvalue = 'Item 1'.obs;
-  get getDropdownvalue => dropdownvalue.value;
- // get getSelectedValue => selectedValue.value;
-  set setDropdownvalue(String resultado) => dropdownvalue.value = resultado;
- // set setSelectedValue(String resultado) => selectedValue.value = resultado;
 
   @override
-  void onInit() {
-    super.onInit();
-    // emailEC.text = 'teste.azerox@gmail.com';
-    // passwordEC.text = 'azeroxtestes@';
-
-    // emailEC.text = 'gontijo@azerox.com.br';
-    // passwordEC.text = '@ANT05024260';
-
-    // emailEC.text = 'cjrondini@gmail.com';
-    // passwordEC.text = '1980';
-
-    emailEC.text = 'gadelha@azerox.com';
-    passwordEC.text = 'capri';
-
-    // emailEC.text = 'antonio@tangum.com.br';
-    // passwordEC.text = 'militao';
+  void onClose() {
+    emailEC.dispose();
+    nomeEC.dispose();
+    apelidoEC.dispose();
+    passwordEC.dispose();
+    super.onClose();
   }
+
+  final isLoading = false.obs;
 
   Future loginWithEmail(String email, String password) async {
     try {

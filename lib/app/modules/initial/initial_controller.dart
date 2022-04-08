@@ -43,12 +43,9 @@ class InitialController extends GetxController {
     dio.options.headers['Cookie'] =
         'ASP.NET_SessionId=krtsvimtvhumftlzsrlu31sd';
 
-
-
-
     final response = await dio.get(
       AppConstants.apiGetUserByEmail,
-    queryParameters: {'email': email},
+      queryParameters: {'email': email},
     );
 
     final data = response.data['Return'];

@@ -1,195 +1,184 @@
-import 'package:flutter/cupertino.dart';
+import 'package:azerox/app/config/app_constants.dart';
+import 'package:azerox/app/core/ui/widgets/app_drop.dart';
+import 'package:azerox/app/core/ui/widgets/app_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:dropdown_button2/dropdown_button2.dart';
-
 import 'login_controller.dart';
 
 class LoginPage extends GetView<LoginController> {
-   LoginPage({Key? key}) : super(key: key);
+  LoginPage({Key? key}) : super(key: key);
 
-
-  List<String> items = [
-    'Item1'
-  ];
-
-
-
+  List<String> items = ['Item1'];
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-        builder: (context, constraints) {
-          var largura = constraints.maxWidth;
-          if(largura < 600){
-            return Scaffold(
-              appBar: AppBar(
-                title: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Cadastrar",
-                      textDirection: TextDirection.ltr,
-                        style: TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              body: Container(
-                width: 600,
-                height: 600,
-                color: Colors.blue,
-              ),
-            );
-          } else{
-            return Scaffold(
-              appBar: AppBar(
-                title: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Cadastrar",
-                        textDirection: TextDirection.ltr,
-                        style: TextStyle(
-                          fontSize: 32,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              body: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 600,
-                        height: 600,
-                        child: Form(
-                          child: ListView(
-                            children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(1),
-                                  child: SizedBox(
-                                    height: 50,
-                                    child: TextFormField(
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                      ),
-                                      decoration: InputDecoration(
-                                        labelText: 'Nome',
-                                          labelStyle: TextStyle(
-                                            color: Colors.black54,
-                                          ),
-                                        hintStyle: const TextStyle(fontSize: 13),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                                          borderSide: BorderSide(color: Colors.teal),
-                                        ),
-                                          enabledBorder: OutlineInputBorder(
-                                            borderRadius: BorderRadius.all(Radius.circular(7.0)),
-                                            borderSide: BorderSide(color: Colors.black26),
-                                          ),
-                                        suffixIcon: IconButton(
-                                          icon: const Icon(
-                                            Icons.close,
-                                            size: 6,
-                                          ),
-                                          onPressed: () {},
-                                        ),
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 10),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(1),
-                                  child: SizedBox(
-                                    height: 50,
-                                    child: TextFormField(
-                                      style: const TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 14,
-                                      ),
-                                      decoration: InputDecoration(
-                                        labelText: 'Apelido',
-                                        labelStyle: TextStyle(
-                                          color: Colors.black54,
-                                        ),
-                                        hintStyle: const TextStyle(fontSize: 13),
-                                        focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(6.0)),
-                                          borderSide: BorderSide(color: Colors.teal),
-                                        ),
-                                        enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(7.0)),
-                                          borderSide: BorderSide(color: Colors.black26),
-                                        ),
-                                        suffixIcon: IconButton(
-                                          icon: const Icon(
-                                            Icons.close,
-                                            size: 6,
-                                          ),
-                                          onPressed: () {},
-                                        ),
-                                        filled: true,
-                                        fillColor: Colors.white,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    DropdownButton(
-
-                                      // Initial Value
-                                      value: controller.dropdownvalue,
-
-                                      // Down Arrow Icon
-                                      icon: const Icon(Icons.keyboard_arrow_down),
-
-                                      // Array list of items
-                                      items: items.map((String items) {
-                                        return DropdownMenuItem(
-                                          value: items,
-                                          child: Text(items),
-                                        );
-                                      }).toList(),
-                                      // After selecting the desired option,it will
-                                      // change button value to selected value
-                                      onChanged: (String? newValue) {
-                                        Obx (() => Text (controller.dropdownvalue = newValue! as RxString));
-                                      },
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }
-        });
+    return Scaffold(
+      appBar: _appBar(),
+      body: _body(context),
+    );
   }
 
+  AppBar _appBar() {
+    return AppBar(
+      centerTitle: true,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new),
+        onPressed: Get.back,
+      ),
+      title: const Text("Novo Cadastro"),
+    );
+  }
+
+  Widget _body(BuildContext context) {
+    return Center(
+      child: Container(
+        alignment: Alignment.center,
+        constraints: const BoxConstraints(maxWidth: 600),
+        child: ListView(
+          children: [
+            AppField(
+              label: "Nome",
+              controller: controller.nomeEC,
+            ),
+            AppField(
+              label: "Apelido",
+              controller: controller.apelidoEC,
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    "@",
+                    style: context.textTheme.bodyText2
+                        ?.copyWith(color: Colors.black),
+                  ),
+                ),
+                Expanded(
+                  child: AppField(
+                    label: "Perfil público",
+                    controller: controller.apelidoEC,
+                  ),
+                ),
+              ],
+            ),
+            AppField(
+              label: "Email",
+              controller: controller.emailEC,
+            ),
+            //   DropdownButton<String>(
+            //     items: const [],
+            //     hint: const Text("label"),
+            //     onChanged: (value) {},
+            //  ),
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text("País"),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: AppDrop<String>(
+                      onChanged: (value) {},
+                      items: _itemsCountry(),
+                      label: "",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text("Estado"),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: AppDrop<String>(
+                      onChanged: (value) {},
+                      items: _itemsEstado(),
+                      label: "",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                const Padding(
+                  padding: EdgeInsets.only(left: 10),
+                  child: Text("Cidade"),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: AppDrop<String>(
+                      onChanged: (value) {},
+                      items: _itemsCities(),
+                      label: "",
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            AppField(
+              label: "Cidade",
+              controller: controller.apelidoEC,
+            ),
+            AppField(
+              label: "Senha",
+              controller: controller.apelidoEC,
+            ),
+            AppField(
+              label: "Confirma senha",
+              controller: controller.apelidoEC,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  List<DropdownMenuItem<String>> _itemsEstado() {
+    final response = <DropdownMenuItem<String>>[];
+    AppConstants.states.toList().forEach((key) {
+      response.add(DropdownMenuItem(
+        value: key["name"],
+        child: Expanded(
+          child: Text(key["name"] ?? ""),
+        ),
+      ));
+    });
+    return response;
+  }
+
+  List<DropdownMenuItem<String>> _itemsCountry() {
+    final response = <DropdownMenuItem<String>>[];
+    AppConstants.countries.toList().forEach((key) {
+      response.add(DropdownMenuItem(
+        value: key["name"],
+        child: Expanded(
+          child: Text(key["name"] ?? ""),
+        ),
+      ));
+    });
+    return response;
+  }
+
+  List<DropdownMenuItem<String>> _itemsCities() {
+    final response = <DropdownMenuItem<String>>[];
+    AppConstants.cities.toList().forEach((key) {
+      response.add(DropdownMenuItem(
+        value: key["name"],
+        child: Expanded(
+          child: Text(key["name"] ?? ""),
+        ),
+      ));
+    });
+    return response;
+  }
 }

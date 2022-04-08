@@ -85,11 +85,11 @@ class CardInfoWidget extends StatelessWidget {
                     visible: editor.state != null,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${editor.state} - ${AppConstants.uf[editor.state]}',
-                        ),
-                        const SizedBox(width: 5),
+                      children: const [
+                        // Text(
+                        //   '${editor.state} - ${AppConstants.uf[editor.state]}',
+                        // ),
+                        SizedBox(width: 5),
                       ],
                     ),
                   ),
