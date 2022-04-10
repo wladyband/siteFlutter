@@ -4,6 +4,6 @@ import 'package:azerox/app/models/state_model.dart';
 
 abstract class IBGERepository {
   Future<List<CountryModel>> findAllCountries();
-  Future<List<StateModel>> findAllStates();
-  Future<List<CityModel>> findAllCities();
+  Future<List<StateModel>> findAllStates(int countryCode);
+  Future<List<CityModel>> findAllCities(int stateCode);
 }

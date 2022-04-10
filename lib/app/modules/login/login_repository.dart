@@ -1,4 +1,3 @@
-import 'package:azerox/app/config/app_constants.dart';
 import 'package:azerox/app/models/user.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
@@ -7,18 +6,39 @@ class LoginRepository extends GetConnect {
   final Dio dio;
   LoginRepository(this.dio);
 
-  Future<UserModel> loginWithEmail(String email, String password) async {
+  Future<UserModel> loginWithEmail({
+    required String email,
+    required String password,
+    required String day,
+    required String month,
+    required String year,
+    required String country,
+    required String state,
+    required String city,
+    required String nickName,
+    required String name,
+    required String profile,
+  }) async {
     final response = await dio.get(
-      AppConstants.apiLogin,
+      "/jsonusers.asmx/InsertUserFacebook",
       queryParameters: {
-        'email': email,
+        'CodUserType': 1,
+        'Country': country,
+        'City': city,
+        'State': state,
+        'Name': name,
+        'Nick': nickName,
+        'BirthDay': day,
+        'BirthMonth': month,
+        'BirthYear': year,
+        'Email': email,
+        'ZipCode': '05501010',
+        'PublicProfile': profile,
         'PassWord': password,
-        'ForceDefaultPassword': true,
-        'ChoiseCredential': false,
       },
     );
 
-    final user = UserModel.fromJson(response.data);
+    final user = UserModel.fromJson(response.data["Return"]);
     user.password = password;
     return user;
   }

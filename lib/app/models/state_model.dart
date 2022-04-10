@@ -1,9 +1,12 @@
 class StateModel {
-  final String name;
-  final String country;
-  StateModel({required this.name, required this.country});
+  final String state;
+  final int codeState;
+  StateModel({this.state = "", this.codeState = 0});
 
   factory StateModel.fromMap(Map<String, dynamic> map) {
-    return StateModel(name: map['name'] ?? '', country: map['country'] ?? '');
+    return StateModel(
+      state: map['State'] ?? '',
+      codeState: map['CodState'] ?? '',
+    );
   }
 }

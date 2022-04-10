@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
 
-import '../../app_controller.dart';
 import '../../config/app_constants.dart';
-import '../../config/app_routes.dart';
 import '../../models/user.dart';
 
 class InitialController extends GetxController {
@@ -59,22 +57,22 @@ class InitialController extends GetxController {
   }
 
   loginWithFacebook() async {
-    await FacebookAuth.instance.login();
-    final user = await FacebookAuth.instance.getUserData();
+    // await FacebookAuth.instance.login();
+    // final user = await FacebookAuth.instance.getUserData();
 
-    if (user.isNotEmpty) {
-      final userFb = UserModel(
-        email: user['email'],
-        name: user['name'],
-        filePicture: user['picture']['data']['url'],
-      );
+    // if (user.isNotEmpty) {
+    //   final userFb = UserModel(
+    //     email: user['email'],
+    //     name: user['name'],
+    //     filePicture: user['picture']['data']['url'],
+    //   );
 
-      final userExists = await getUserByEmail(userFb.email!);
+    //   final userExists = await getUserByEmail(userFb.email!);
 
-      if (userExists != null) {
-        Get.find<AppController>().currentUser = userExists;
-      }
-      Get.offNamed(Routes.home);
-    }
+    //   if (userExists != null) {
+    //     Get.find<AppController>().currentUser = userExists;
+    //   }
+    //   Get.offNamed(Routes.home);
+    // }
   }
 }

@@ -3,8 +3,15 @@ import 'package:flutter/material.dart';
 class AppField extends StatefulWidget {
   final String? label;
   final TextEditingController? controller;
-
-  const AppField({Key? key, this.label, this.controller}) : super(key: key);
+  final bool obscured;
+  final String? Function(String?)? validation;
+  const AppField(
+      {Key? key,
+      this.label,
+      this.controller,
+      this.obscured = false,
+      this.validation})
+      : super(key: key);
 
   @override
   State<AppField> createState() => _AppFieldState();
@@ -20,7 +27,10 @@ class _AppFieldState extends State<AppField> {
           color: Colors.black,
           fontSize: 14,
         ),
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        validator: widget.validation,
         controller: widget.controller,
+        obscureText: widget.obscured,
         decoration: InputDecoration(
           labelText: widget.label,
           labelStyle: const TextStyle(

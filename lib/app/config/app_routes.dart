@@ -1,4 +1,7 @@
 import 'package:azerox/app/modules/new_editions/new_editions_page.dart';
+import 'package:azerox/app/modules/politics/consentient_terms.dart';
+import 'package:azerox/app/modules/politics/politics.dart';
+import 'package:azerox/app/modules/politics/use_terms.dart';
 import 'package:get/get.dart';
 
 import '../modules/home/home_bindings.dart';
@@ -31,10 +34,24 @@ class AppRoutes {
       page: () => const NewEditionsPage(),
       binding: NewEditionsBindings(),
     ),
+    GetPage(
+      name: Routes.consentientTerms,
+      page: () => const ConsentientTerms(),
+    ),
+    GetPage(
+      name: Routes.politics,
+      page: () => const Politics(),
+    ),
+    GetPage(
+      name: Routes.useTerms,
+      page: () => const UseTerms(),
+    ),
   ];
 }
 
 class Routes {
+  Routes._();
+
   static const initial = '/initial';
   static const login = '/login';
   static const home = '/home';
@@ -42,4 +59,7 @@ class Routes {
   static const favoriteds = '/favoriteds';
   static const newEditions = '/newEditions';
   static const createPost = '/createPost';
+  static const politics = '/politics';
+  static const useTerms = '/useTerms';
+  static const consentientTerms = '/consentientTerms';
 }

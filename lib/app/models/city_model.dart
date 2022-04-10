@@ -1,9 +1,14 @@
 class CityModel {
-  final String name;
-  final String state;
-  CityModel({required this.name, required this.state});
+  final int codeState;
+  final int codeCity;
+  final String city;
+  CityModel({this.codeCity = 0, this.codeState = 0, this.city = ""});
 
   factory CityModel.fromMap(Map<String, dynamic> map) {
-    return CityModel(name: map['name'] ?? '', state: map['country'] ?? '');
+    return CityModel(
+      codeState: map['CodState'] ?? '',
+      codeCity: map['CodCity'] ?? '',
+      city: map['City'] ?? '',
+    );
   }
 }

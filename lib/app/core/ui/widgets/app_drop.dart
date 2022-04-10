@@ -13,19 +13,28 @@ class AppDrop<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: Colors.grey[400]!),
-        color: Colors.white,
-      ),
-      child: DropdownButton<T>(
-        items: items,
-        hint: Text(label),
-        underline: const SizedBox(),
-        isExpanded: true,
-        onChanged: onChanged,
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.symmetric(vertical: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: Colors.grey[400]!),
+            color: Colors.white,
+          ),
+          child: DropdownButton<T>(
+            items: items,
+            hint: Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(label),
+            ),
+            underline: const SizedBox(),
+            isExpanded: true,
+            onChanged: onChanged,
+          ),
+        ),
+      ],
     );
   }
 }
