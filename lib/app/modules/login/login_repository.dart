@@ -6,6 +6,22 @@ class LoginRepository extends GetConnect {
   final Dio dio;
   LoginRepository(this.dio);
 
+  Future<List<String>> validCreateAccount({
+    required String email,
+    required String profile,
+  }) async {
+    var result = <String>[];
+    var res = await dio.get(
+      '/jsonusers.asmx/GetExists',
+      queryParameters: {'Email': email, 'PublicProfile': profile},
+    );
+
+    if (res.data['EmailExists']) result.add('Email já existe');
+    if (res.data['PublicProfileExists']) result.add('Perfil já existe');
+
+    return result;
+  }
+
   Future<UserModel> loginWithEmail({
     required String email,
     required String password,

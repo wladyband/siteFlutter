@@ -102,27 +102,40 @@ class LoginController extends GetxController {
         validState.value) {
       try {
         isLoading(true);
-        final user = await _loginRepository.loginWithEmail(
-          country: selectedCountry.country,
-          state: selectedState.state,
-          city: selectedCity.city,
-          day: selectedDay.value,
-          month: selectedMonth.value,
-          year: selectedYear.value,
+        var res = await _loginRepository.validCreateAccount(
           email: emailEC.text,
-          name: nomeEC.text,
-          nickName: nickNameEC.text,
-          password: passwordEC.text,
-          profile: apelidoEC.text,
+          profile: nickNameEC.text,
         );
-        Get.find<AppController>().currentUser = user;
-        isLoading.value = false;
-        Get.snackbar(
-          "Sucesso",
-          "Sua conta foi cadastrada",
-          backgroundColor: Colors.green,
-          colorText: Colors.white,
-        );
+        if (res.isNotEmpty) {
+          Get.snackbar(
+            "Ops",
+            res.map((e) => "$e\n").join(),
+            backgroundColor: Colors.red,
+            colorText: Colors.white,
+          );
+        } else {
+          final user = await _loginRepository.loginWithEmail(
+            country: selectedCountry.country,
+            state: selectedState.state,
+            city: selectedCity.city,
+            day: selectedDay.value,
+            month: selectedMonth.value,
+            year: selectedYear.value,
+            email: emailEC.text,
+            name: nomeEC.text,
+            nickName: nickNameEC.text,
+            password: passwordEC.text,
+            profile: apelidoEC.text,
+          );
+          Get.find<AppController>().currentUser = user;
+          isLoading.value = false;
+          Get.snackbar(
+            "Sucesso",
+            "Sua conta foi cadastrada",
+            backgroundColor: Colors.green,
+            colorText: Colors.white,
+          );
+        }
       } catch (e) {
         Get.snackbar(
           "Ops",
