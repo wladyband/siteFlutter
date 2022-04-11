@@ -32,7 +32,7 @@ class LoginRepository extends GetConnect {
         'BirthMonth': month,
         'BirthYear': year,
         'Email': email,
-        'ZipCode': '05501010',
+        'ZipCode': '0000000',
         'PublicProfile': profile,
         'PassWord': password,
       },
