@@ -22,6 +22,8 @@ class LoginController extends GetxController {
   final nickNameEC = TextEditingController();
   final emailEC = TextEditingController();
   final passwordEC = TextEditingController();
+  final stateEC = TextEditingController();
+  final cityEC = TextEditingController();
   final confirmPasswordEC = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
@@ -74,6 +76,8 @@ class LoginController extends GetxController {
     apelidoEC.dispose();
     passwordEC.dispose();
     nickNameEC.dispose();
+    cityEC.dispose();
+    stateEC.dispose();
     confirmPasswordEC.dispose();
     super.onClose();
   }
@@ -84,13 +88,17 @@ class LoginController extends GetxController {
   }
 
   Future<void> findAllStates() async {
-    var res = await _ibgeRepository.findAllStates(selectedCountry.codCountry);
-    _states.assignAll(res);
+    if (_selectedCountry.value.codCountry == 1) {
+      var res = await _ibgeRepository.findAllStates(selectedCountry.codCountry);
+      _states.assignAll(res);
+    }
   }
 
   Future<void> findAllCities() async {
-    var res = await _ibgeRepository.findAllCities(selectedState.codeState);
-    cities.assignAll(res);
+    if (_selectedCountry.value.codCountry == 1) {
+      var res = await _ibgeRepository.findAllCities(selectedState.codeState);
+      cities.assignAll(res);
+    }
   }
 
   Future loginWithEmail() async {
@@ -114,10 +122,16 @@ class LoginController extends GetxController {
             colorText: Colors.white,
           );
         } else {
+          var state = selectedState.state;
+          var city = selectedCity.city;
+          if (selectedCountry.codCountry > 1) {
+            city = cityEC.text;
+            state = stateEC.text.substring(0, 2);
+          }
           final user = await _loginRepository.loginWithEmail(
             country: selectedCountry.country,
-            state: selectedState.state,
-            city: selectedCity.city,
+            state: state,
+            city: city,
             day: selectedDay.value,
             month: selectedMonth.value,
             year: selectedYear.value,
@@ -159,18 +173,28 @@ class LoginController extends GetxController {
         selectedMonth.value == "Mês" ||
         selectedYear.value == "Ano") {
       validDate(false);
+    } else {
+      validDate(true);
     }
-    if (selectedCity.city.isEmpty) {
+    if (selectedCity.city.isEmpty && cityEC.text.isEmpty) {
       validCity(false);
+    } else {
+      validCity(true);
     }
-    if (selectedState.state.isEmpty) {
+    if (selectedState.state.isEmpty && stateEC.text.isEmpty) {
       validState(false);
+    } else {
+      validState(true);
     }
     if (selectedCountry.country.isEmpty) {
       validCountry(false);
+    } else {
+      validCountry(true);
     }
     if (!politicPrivacies.value) {
       validPolitics(false);
+    } else {
+      validPolitics(true);
     }
     formKey.currentState?.validate();
     loginWithEmail();

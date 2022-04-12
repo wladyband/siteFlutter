@@ -154,33 +154,41 @@ class LoginPage extends GetView<LoginController> {
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Padding(
+              Obx(() {
+                return Row(
+                  children: [
+                    Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Obx(
-                        () => Text(
-                          "Estado",
-                          style: TextStyle(
-                              color: controller.validState.value
-                                  ? null
-                                  : Colors.red),
+                      child: Text(
+                        "Estado",
+                        style: TextStyle(
+                          color:
+                              controller.validState.value ? null : Colors.red,
                         ),
-                      )),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Obx(() => AppDrop<StateModel>(
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Visibility(
+                          visible: controller.selectedCountry.codCountry <= 1,
+                          child: AppDrop<StateModel>(
                             onChanged: (value) {
                               controller.selectedState = value!;
                             },
                             items: _itemsState(),
                             label: controller.selectedState.state,
-                          )),
+                          ),
+                          replacement: AppField(
+                              controller: controller.stateEC,
+                              padding: const EdgeInsets.only(
+                                  left: 10, top: 10, bottom: 10)),
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                );
+              }),
               Row(
                 children: [
                   Padding(
@@ -195,12 +203,19 @@ class LoginPage extends GetView<LoginController> {
                   ),
                   const SizedBox(width: 10),
                   Expanded(
-                    child: Obx(() => AppDrop<CityModel>(
-                          onChanged: (value) {
-                            controller.selectedCity = value!;
-                          },
-                          items: _itemsCities(),
-                          label: controller.selectedCity.city,
+                    child: Obx(() => Visibility(
+                          visible: controller.selectedCountry.codCountry <= 1,
+                          child: AppDrop<CityModel>(
+                            onChanged: (value) {
+                              controller.selectedCity = value!;
+                            },
+                            items: _itemsCities(),
+                            label: controller.selectedCity.city,
+                          ),
+                          replacement: AppField(
+                              controller: controller.cityEC,
+                              padding: const EdgeInsets.only(
+                                  left: 10, top: 10, bottom: 10)),
                         )),
                   ),
                   const SizedBox(width: 10),
@@ -254,7 +269,7 @@ class LoginPage extends GetView<LoginController> {
                     const Text("Ao aceitar você concorda com "),
                     GestureDetector(
                       child: const Text(
-                        "Termos de Uso",
+                        "Termos de Uso,",
                         style: TextStyle(color: Colors.blue),
                       ),
                       onTap: () {
@@ -263,7 +278,7 @@ class LoginPage extends GetView<LoginController> {
                     ),
                     GestureDetector(
                       child: const Text(
-                        ", Política de Privacidade ",
+                        " Política de Privacidade ",
                         style: TextStyle(color: Colors.blue),
                       ),
                       onTap: () {

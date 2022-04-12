@@ -4,14 +4,17 @@ class AppField extends StatefulWidget {
   final String? label;
   final TextEditingController? controller;
   final bool obscured;
+  final EdgeInsets pad;
   final String? Function(String?)? validation;
   const AppField(
       {Key? key,
       this.label,
+      EdgeInsets? padding,
       this.controller,
       this.obscured = false,
       this.validation})
-      : super(key: key);
+      : pad = padding ?? const EdgeInsets.all(10),
+        super(key: key);
 
   @override
   State<AppField> createState() => _AppFieldState();
@@ -21,7 +24,7 @@ class _AppFieldState extends State<AppField> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: widget.pad,
       child: TextFormField(
         style: const TextStyle(
           color: Colors.black,
