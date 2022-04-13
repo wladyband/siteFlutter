@@ -1,4 +1,3 @@
-import 'package:azerox/app/config/app_constants.dart';
 import 'package:azerox/app/models/user.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';

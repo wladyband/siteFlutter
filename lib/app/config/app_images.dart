@@ -24,6 +24,7 @@ class AppImages {
   static const azerox2 = 'assets/images/azerox2.png';
   static const azerox3 = 'assets/images/azerox3.png';
   static const azerox4 = 'assets/images/azerox4.png';
+  static const tela3 = 'assets/images/3tela.jpeg';
   static const tela4 = 'assets/images/4tela.png';
   static const tela5 = 'assets/images/5tela.png';
   static const tela6 = 'assets/images/6tela.png';
