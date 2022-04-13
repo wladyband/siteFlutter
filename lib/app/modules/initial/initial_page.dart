@@ -1,11 +1,9 @@
-import 'package:azerox/app/modules/initial/widgets/video_player.dart';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
-
-
-
 import '../../config/app_images.dart';
 import '../../config/app_routes.dart';
 
@@ -50,14 +48,17 @@ with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    String url;
-    YoutubePlayerController _controller = YoutubePlayerController(
-        initialVideoId: '51DQyYJ_foM',
+
+    YoutubePlayerController _controllerAutobiografia = YoutubePlayerController(
+        initialVideoId:
+        '9lKjbpIVgAo',
       params: const YoutubePlayerParams(
         loop: false,
         color: 'transparent',
         desktopMode: true,
         strictRelatedVideos: true,
+        showFullscreenButton: true,
+
         ),
         // flags: YoutubePlayerFlags(
         //   enableCaption: false,
@@ -65,6 +66,25 @@ with TickerProviderStateMixin {
         //   autoPlay: true
         // )
     );
+
+
+    YoutubePlayerController _controllerMostrandoProjeto = YoutubePlayerController(
+      initialVideoId:
+      'KSrafMn4n2Y',
+      params: const YoutubePlayerParams(
+        loop: false,
+        color: 'transparent',
+        desktopMode: true,
+        strictRelatedVideos: true,
+        showFullscreenButton: true,
+      ),
+      // flags: YoutubePlayerFlags(
+      //   enableCaption: false,
+      //   isLive: false,
+      //   autoPlay: true
+      // )
+    );
+
     return MaterialApp(
       scrollBehavior: EnableMouseScrollBehavior(),
       home: Scaffold(
@@ -89,15 +109,32 @@ with TickerProviderStateMixin {
                           child: SizedBox(
                             width: 600,
                             height: 600,
-                              child: YoutubePlayerIFrame(
-                                controller: _controller,
-                               aspectRatio: 500 / 100,
-                              ),
+                            child: YoutubePlayerIFrame(
+                              controller: _controllerAutobiografia,
+                              aspectRatio: 16 / 9,
+                            ),
                           ),
                         ),
-                        Image.asset(AppImages.azerox2),
-                        Image.asset(AppImages.azerox3),
-                        Image.asset(AppImages.azerox4),
+                        Center(
+                          child: SizedBox(
+                            width: 600,
+                            height: 600,
+                            child: YoutubePlayerIFrame(
+                              controller: _controllerMostrandoProjeto,
+                              aspectRatio: 500 / 100,
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: SizedBox(
+                            width: 1600,
+                            height: 800,
+                            child: Image.asset(AppImages.tela4),
+                          ),
+                        ),
+
+                        Image.asset(AppImages.tela5),
+                        Image.asset(AppImages.tela6),
                       ],
                     ),
                   ),
@@ -107,8 +144,11 @@ with TickerProviderStateMixin {
                     children: <Widget>[
                       RaisedButton(
                         textColor: Colors.white,
-                        color: Colors.pink,
-                        child: Text("Previous"),
+                        color: Colors.blue,
+                        child:Icon(
+                          Icons.arrow_back_ios,
+                          size: 16,
+                        ),
                         onPressed: () {
                           pageController?.previousPage(
                             curve: Curves.linear,
@@ -121,8 +161,11 @@ with TickerProviderStateMixin {
                       ),
                       RaisedButton(
                         textColor: Colors.white,
-                        color: Colors.pink,
-                        child: Text("Next"),
+                        color: Colors.blue,
+                        child: Icon(
+                            Icons.arrow_forward_ios,
+                          size: 16,
+                        ),
                         onPressed: () {
                           pageController?.nextPage(
                               curve: Curves.linear,
@@ -132,7 +175,7 @@ with TickerProviderStateMixin {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 30),
                   Expanded(
                     child: Column(
                       children: [
@@ -147,15 +190,12 @@ with TickerProviderStateMixin {
                             ),
                             label: const Center(
                               child: Text(
-                                'Cadastrar E-mail',
+                                'Cadastrar',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700,
                                 ),
                               ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              primary: const Color(0XFF7D7D7D),
                             ),
                             onPressed: () => Get.toNamed(Routes.login),
                           ),
