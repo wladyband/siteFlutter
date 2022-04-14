@@ -53,7 +53,7 @@ class _InitialPageState extends State<InitialPage> {
     return ListView(
       children: [
         SizedBox(
-          height: 500,
+          height: context.heightTransformer(reducedBy: 25),
           child: PageView(
             controller: _pageController,
             scrollBehavior: _activeScroll,
