@@ -52,19 +52,25 @@ class _InitialPageState extends State<InitialPage> {
   Widget _body() {
     return ListView(
       children: [
-        SizedBox(
-          height: context.heightTransformer(reducedBy: 25),
-          child: PageView(
-            controller: _pageController,
-            scrollBehavior: _activeScroll,
-            children: [
-              YoutubePlayerIFrame(controller: _videoBiographic),
-              YoutubePlayerIFrame(controller: _videoProject),
-              Image.asset(AppImages.tela3),
-              Image.asset(AppImages.tela4),
-              Image.asset(AppImages.tela5),
-              Image.asset(AppImages.tela6),
-            ],
+        Align(
+          alignment: Alignment.center,
+          child: SizedBox(
+            width: 400,
+            height: context.heightTransformer(reducedBy: 25),
+            child: Center(
+              child: PageView(
+                controller: _pageController,
+                scrollBehavior: _activeScroll,
+                children: [
+                  YoutubePlayerIFrame(controller: _videoBiographic),
+                  YoutubePlayerIFrame(controller: _videoProject),
+                  Image.asset(AppImages.tela3),
+                  Image.asset(AppImages.tela4),
+                  Image.asset(AppImages.tela5),
+                  Image.asset(AppImages.tela6),
+                ],
+              ),
+            ),
           ),
         ),
         const SizedBox(height: 25),
