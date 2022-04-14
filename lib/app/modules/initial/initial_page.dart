@@ -30,14 +30,14 @@ YoutubePlayerController _defaultVideoController({
 
 class _InitialPageState extends State<InitialPage> {
   final _pageController = PageController();
-  final _videoBiographic = _defaultVideoController(initialVideo: '9lKjbpIVgAo');
+//  final _videoBiographic = _defaultVideoController(initialVideo: '9lKjbpIVgAo');
   final _videoProject = _defaultVideoController(initialVideo: 'KSrafMn4n2Y');
   final _activeScroll = EnableMouseScrollBehavior();
 
   @override
   void dispose() {
     _pageController.dispose();
-    _videoBiographic.close();
+   // _videoBiographic.close();
     _videoProject.close();
     super.dispose();
   }
@@ -62,7 +62,8 @@ class _InitialPageState extends State<InitialPage> {
                 controller: _pageController,
                 scrollBehavior: _activeScroll,
                 children: [
-                  YoutubePlayerIFrame(controller: _videoBiographic),
+                //  YoutubePlayerIFrame(controller: _videoBiographic),
+                  Image.asset(AppImages.tela1),
                   YoutubePlayerIFrame(controller: _videoProject),
                   Image.asset(AppImages.tela3),
                   Image.asset(AppImages.tela4),
