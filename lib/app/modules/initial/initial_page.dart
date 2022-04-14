@@ -67,7 +67,7 @@ class _InitialPageState extends State<InitialPage> {
             ],
           ),
         ),
-        const SizedBox(height: 50),
+        const SizedBox(height: 25),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -93,12 +93,25 @@ class _InitialPageState extends State<InitialPage> {
           ],
         ),
         Center(
+
           child: Padding(
             padding: const EdgeInsets.only(top: 30),
             child: ElevatedButton(
-              child: const Padding(
-                padding: EdgeInsets.all(10),
-                child: Text("Cadastrar"),
+              child: SizedBox(
+                width: 309,
+                height: 47,
+                child: Center(
+                  child: const Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                        "Cadastrar",
+                      style:TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               onPressed: () => Get.toNamed(Routes.login),
             ),
