@@ -31,7 +31,7 @@ YoutubePlayerController _defaultVideoController({
 class _InitialPageState extends State<InitialPage> {
   final _pageController = PageController();
 //  final _videoBiographic = _defaultVideoController(initialVideo: '9lKjbpIVgAo');
-  final _videoProject = _defaultVideoController(initialVideo: 'KSrafMn4n2Y');
+  final _videoProject = _defaultVideoController(initialVideo: '6EJyjF8SHRE');
   final _activeScroll = EnableMouseScrollBehavior();
 
   @override
