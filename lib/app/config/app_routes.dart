@@ -1,16 +1,12 @@
-import 'package:azerox/app/modules/new_editions/new_editions_page.dart';
 import 'package:azerox/app/modules/politics/consentient_terms.dart';
 import 'package:azerox/app/modules/politics/politics.dart';
 import 'package:azerox/app/modules/politics/use_terms.dart';
 import 'package:get/get.dart';
 
-import '../modules/home/home_bindings.dart';
-import '../modules/home/home_page.dart';
 import '../modules/initial/initial_bindings.dart';
 import '../modules/initial/initial_page.dart';
 import '../modules/login/login_bindings.dart';
 import '../modules/login/login_page.dart';
-import '../modules/new_editions/new_editions_bindings.dart';
 
 class AppRoutes {
   static final pages = [
@@ -23,16 +19,6 @@ class AppRoutes {
       name: Routes.login,
       page: () => LoginPage(),
       binding: LoginBindings(),
-    ),
-    GetPage(
-      name: Routes.home,
-      page: () => const HomePage(),
-      binding: HomeBindings(),
-    ),
-    GetPage(
-      name: Routes.newEditions,
-      page: () => const NewEditionsPage(),
-      binding: NewEditionsBindings(),
     ),
     GetPage(
       name: Routes.consentientTerms,
