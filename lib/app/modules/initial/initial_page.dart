@@ -34,6 +34,14 @@ class _InitialPageState extends State<InitialPage> {
   final _videoProject = _defaultVideoController(initialVideo: '6EJyjF8SHRE');
   final _activeScroll = EnableMouseScrollBehavior();
 
+  Image? image1;
+  Image? image2;
+  Image? image3;
+  Image? image4;
+  Image? image5;
+
+
+
   @override
   void dispose() {
     _pageController.dispose();
@@ -47,6 +55,28 @@ class _InitialPageState extends State<InitialPage> {
     return Scaffold(
       body: _body(),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    image1 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/1tela.png');
+    image2 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/3tela.png');
+    image3 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/4tela.png');
+    image4 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/5tela.png');
+    image5 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/6tela.png');
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(image1!.image, context);
+    precacheImage(image2!.image, context);
+    precacheImage(image3!.image, context);
+    precacheImage(image4!.image, context);
+    precacheImage(image5!.image, context);
+
   }
 
   Widget _body() {
@@ -63,12 +93,13 @@ class _InitialPageState extends State<InitialPage> {
                 scrollBehavior: _activeScroll,
                 children: [
                 //  YoutubePlayerIFrame(controller: _videoBiographic),
-                  Image.asset(AppImages.tela1),
+
+                  image1!,
                   YoutubePlayerIFrame(controller: _videoProject),
-                  Image.asset(AppImages.tela3),
-                  Image.asset(AppImages.tela4),
-                  Image.asset(AppImages.tela5),
-                  Image.asset(AppImages.tela6),
+                  image2!,
+                  image3!,
+                  image4!,
+                  image5!,
                 ],
               ),
             ),

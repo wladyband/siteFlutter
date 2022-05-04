@@ -61,8 +61,7 @@ class LoginPage extends GetView<LoginController> {
                         Text(
                           "Data de nascimento",
                           style: TextStyle(
-                            color:
-                                controller.validDate.value ? null : Colors.red,
+                            color: controller.validDate.value ? null : Colors.red,
                           ),
                         ),
                         Row(
