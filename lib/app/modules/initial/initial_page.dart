@@ -61,7 +61,7 @@ class _InitialPageState extends State<InitialPage> {
   void initState() {
     super.initState();
 
-    image1 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/1tela.png');
+    image1 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/1tela.jpeg');
     image2 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/3tela.png');
     image3 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/4tela.png');
     image4 = Image.network('https://azerox-s3-imagens.s3.us-east-1.amazonaws.com/5tela.png');
