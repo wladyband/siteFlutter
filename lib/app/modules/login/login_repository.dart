@@ -1,3 +1,4 @@
+import 'package:azerox/app/models/conta_user_model.dart';
 import 'package:azerox/app/models/user.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,9 @@ class LoginRepository extends GetConnect {
     return result;
   }
 
-  Future<UserModel> loginWithEmail({
+  DateTime date(int day, int month, int year) => DateTime(year, month, day);
+
+  Future<ContaUserModel> loginWithEmail({
     required String email,
     required String password,
     required String day,
@@ -35,6 +38,10 @@ class LoginRepository extends GetConnect {
     required String name,
     required String profile,
   }) async {
+    int valDay = int.parse(day);
+    int valMonth = int.parse(month);
+    int valYear = int.parse(year);
+
     final response = await dio.get(
       "/jsonusers.asmx/InsertUserFacebook",
       queryParameters: {
@@ -47,6 +54,7 @@ class LoginRepository extends GetConnect {
         'BirthDay': day,
         'BirthMonth': month,
         'BirthYear': year,
+        'BirthString': date(valDay, valMonth, valYear),
         'Email': email,
         'ZipCode': '0000000',
         'PublicProfile': profile,
@@ -54,7 +62,8 @@ class LoginRepository extends GetConnect {
       },
     );
 
-    final user = UserModel.fromJson(response.data["Return"]);
+    final user = ContaUserModel.fromJson(response.data["Return"]);
+    print(user);
     user.password = password;
     return user;
   }

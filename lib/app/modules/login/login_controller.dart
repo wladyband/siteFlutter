@@ -141,7 +141,7 @@ class LoginController extends GetxController {
             password: passwordEC.text,
             profile: apelidoEC.text,
           );
-          Get.find<AppController>().currentUser = user;
+          Get.find<AppController>().currentUserCont = user;
           isLoading.value = false;
           Get.snackbar(
             "Sucesso",
