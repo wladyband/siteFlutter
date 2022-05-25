@@ -63,7 +63,7 @@ class LoginRepository extends GetConnect {
     );
 
     final user = ContaUserModel.fromJson(response.data["Return"]);
-    print(user);
+
     user.password = password;
     return user;
   }
