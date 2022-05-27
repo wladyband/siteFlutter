@@ -371,11 +371,11 @@ class LoginPage extends GetView<LoginController> {
     });
     return response;
   }
-
+// O trecho abaixo determina o tempo máximo de anos para o campo ano
   List<DropdownMenuItem<String>> _itemsYears() {
     final response = <DropdownMenuItem<String>>[];
     var actualYear = DateTime.now().year;
-    var years = List.generate(60, (index) => "${actualYear - index}");
+    var years = List.generate(220, (index) => "${actualYear - index}");
 
     years.forEach((element) {
       response.add(DropdownMenuItem(
