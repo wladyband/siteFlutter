@@ -1,5 +1,4 @@
 import 'package:azerox/app/models/conta_user_model.dart';
-import 'package:azerox/app/models/user.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 

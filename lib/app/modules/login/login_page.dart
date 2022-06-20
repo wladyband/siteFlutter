@@ -49,7 +49,7 @@ class LoginPage extends GetView<LoginController> {
               ),
               AppField(
                 label: "Apelido",
-                controller: controller.apelidoEC,
+                controller: controller.nickNameEC,
                 validation: Mask.validations.generic,
               ),
               Padding(
@@ -119,7 +119,7 @@ class LoginPage extends GetView<LoginController> {
                         value,
                         min: 4,
                       ),
-                      controller: controller.nickNameEC,
+                      controller: controller.publicProfileEC,
                     ),
                   ),
                 ],

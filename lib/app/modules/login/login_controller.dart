@@ -18,8 +18,8 @@ class LoginController extends GetxController {
         _ibgeRepository = ibgeRepository;
 
   final nomeEC = TextEditingController();
-  final apelidoEC = TextEditingController();
   final nickNameEC = TextEditingController();
+  final publicProfileEC = TextEditingController();
   final emailEC = TextEditingController();
   final passwordEC = TextEditingController();
   final stateEC = TextEditingController();
@@ -73,7 +73,8 @@ class LoginController extends GetxController {
   void onClose() {
     emailEC.dispose();
     nomeEC.dispose();
-    apelidoEC.dispose();
+    passwordEC.dispose();
+    publicProfileEC.dispose();
     passwordEC.dispose();
     nickNameEC.dispose();
     cityEC.dispose();
@@ -112,7 +113,7 @@ class LoginController extends GetxController {
         isLoading(true);
         var res = await _loginRepository.validCreateAccount(
           email: emailEC.text,
-          profile: nickNameEC.text,
+          profile: publicProfileEC.text,
         );
         if (res.isNotEmpty) {
           Get.snackbar(
@@ -138,8 +139,8 @@ class LoginController extends GetxController {
             email: emailEC.text,
             name: nomeEC.text,
             nickName: nickNameEC.text,
+            profile: publicProfileEC.text,
             password: passwordEC.text,
-            profile: apelidoEC.text,
           );
           Get.find<AppController>().currentUserCont = user;
           isLoading.value = false;
